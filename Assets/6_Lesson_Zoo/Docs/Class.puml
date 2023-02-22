@@ -1,0 +1,92 @@
+@startuml
+
+namespace Lesson_6{
+    class AnimalPen <<MonoBehaviour>>{
+        + List<Animal> Animals
+        + void SpawnAnimals(Dictionary<GameObject, int> spawns)
+        + void SpawnAnimals(GameObject prefab, int[][] matrix)
+        + void SpawnAnimals(GameObject prefab, int[,] matrix)
+        + void SpawnAnimals(List<GameObject> anims)
+        + void SpawnAnimals(HashSet<GameObject> animals)
+    }
+
+    class Player <<MonoBehaviour>>{
+        + FriendlyAnimal SelectedAnimal
+        # void Update()
+    }
+
+    class Zoo <<MonoBehaviour>>{
+        + List<GameObject> AnimalPrefabs
+        + GameObject AnimalPenPrefab
+        + List<AnimalPen> Pens
+        + List<Animal> AllAnimals
+        # void Start()
+        - AnimalPen Spawner(int counter)
+    }
+
+    namespace Animals{
+        enum AnimalState{
+            IDLE
+            EATING
+            SLEEPING
+            HUNTING
+            FLEEING
+        }
+        abstract class Animal <<MonoBehaviour>>{
+            + float speed = 1.0f
+            + float IdleArea = 25.0f
+            + bool Busy = false;
+            # Vector3 IdleCenter;
+            # AnimalState CurrentState
+        }
+
+        abstract class FriendlyAnimal{
+            + AnimalPen Pen
+            + void OnMouseDown()
+        }
+
+        abstract class HostileAnimal{
+
+        }
+
+        interface IFriendlyAnimal{
+            + void OnMouseDown()
+        }
+
+        interface IHostileAnimal{
+
+        }
+
+        class Cat{
+            # void Update()
+            + void OnMouseDown()
+        }
+
+        class Pig{
+            # void Update()
+            - IEnumerator LerpMovement(Vector3 to)
+        }
+
+        class Wolf{
+
+        }
+
+        FriendlyAnimal -up-|> Animal
+        FriendlyAnimal -up-|> IFriendlyAnimal
+        HostileAnimal -up-|> Animal
+        HostileAnimal -up-|> IHostileAnimal
+        Wolf -up-|> HostileAnimal
+        Cat -up-|> FriendlyAnimal
+        Pig -up-|> FriendlyAnimal
+        Animal *-- AnimalState : State
+    }
+
+    Player "1" ..> "1..*" Lesson_6.Animals.Animal : Interacts with
+    AnimalPen "1" *-- "*" Lesson_6.Animals.Animal : Contains
+    Zoo "1" *-- "*"  AnimalPen : Contains
+    Zoo "1" .. "*"  Lesson_6.Animals.Animal
+
+
+}
+
+@enduml
