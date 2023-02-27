@@ -6,6 +6,9 @@ namespace Lesson_6.Animals
 {
     public class Wolf : HostileAnimal
     {
+        private Vector3 _startPosition; // The starting position of the object
+        private float _angle = 0f; // The current angle of _startPosition
+2
         protected void Update()
         {
             if (CurrentState == AnimalState.IDLE && !busy)
@@ -16,7 +19,7 @@ namespace Lesson_6.Animals
                 nextGraze.x += rand.x;
                 nextGraze.y = 2f;
                 nextGraze.z += rand.y;
-                StartCoroutine(LerpMovement(nextGraze)); ff
+                StartCoroutine(LerpMovement(nextGraze)); // This is the same as the Pig.cs script
             }
             Vector3 orbitPosition = new Vector3(
                 _startPosition.x + (IdleArea * Mathf.Cos(_angle)),
@@ -26,7 +29,7 @@ namespace Lesson_6.Animals
 
             transform.position = orbitPosition;
 
-            _angle += speed * Time.deltaTime;
+            _angle += speed * Time.deltaTime; 
         }
 
     }
