@@ -8,7 +8,7 @@ namespace Lesson_6.Animals
     {
         private Vector3 _startPosition; // The starting position of the object
         private float _angle = 0f; // The current angle of _startPosition
-
+2
         protected void Update()
         {
             if (CurrentState == AnimalState.IDLE && !busy)
@@ -29,7 +29,7 @@ namespace Lesson_6.Animals
 
             transform.position = orbitPosition;
 
-            _angle += speed * Time.deltaTime;
+            _angle += speed * Time.deltaTime; 
         }
 
     }
