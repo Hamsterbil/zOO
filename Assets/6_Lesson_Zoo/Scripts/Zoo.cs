@@ -7,15 +7,26 @@ using UnityEngine;
 public class Zoo : MonoBehaviour
 {
     public List<GameObject> AnimalPrefabs;
-    public GameObject AnimalPenPrefab;
+    public List<GameObject> PrefabList;
 
     public List<AnimalPen> Pens;
     public List<Animal> AllAnimals;
+
+    public GameObject AnimalPen;
+    public GameObject AnimalPen1;
+    public GameObject AnimalPen2;
+    public GameObject AnimalPen3;
+    public GameObject AnimalPen4;
 
     protected void Start()
     {
         Pens = new List<AnimalPen>();
         AllAnimals = new List<Animal>();
+        PrefabList.Add(AnimalPen);
+        PrefabList.Add(AnimalPen1);
+        PrefabList.Add(AnimalPen2);
+        PrefabList.Add(AnimalPen3);
+        PrefabList.Add(AnimalPen4);
 
         for (int i = 0; i < 10; i++)
         {
@@ -28,7 +39,8 @@ public class Zoo : MonoBehaviour
     private AnimalPen Spawner(int counter)
     {
         //Spawn animal pen
-        GameObject go = Instantiate(AnimalPenPrefab, transform);
+        int prefabIndex = UnityEngine.Random.Range(0,4);
+        GameObject go = Instantiate(PrefabList[prefabIndex], transform);
         //Set the position of the pen to be 50 units away from the previous pen in both x and z
         Vector3 spawnLocation = new Vector3((counter + 1) * 50, 0, (counter + 1) * 50);
         go.transform.SetPositionAndRotation(spawnLocation, Quaternion.identity);
