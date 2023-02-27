@@ -5,5 +5,4 @@ Der skal være gode dyr og hostile dyr.
 Man skal kunne interagere med dyrene.
 Man skal kunne gå på vandet.
 Man skal kunne pet de gode dyr.
-Der skal sparke hostile dyr.
-
+Der skal sparkes til hostile dyr.

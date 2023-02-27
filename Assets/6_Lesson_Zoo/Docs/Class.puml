@@ -33,28 +33,25 @@ namespace Lesson_6{
             FLEEING
         }
         abstract class Animal <<MonoBehaviour>>{
-            + float speed = 1.0f
-            + float IdleArea = 25.0f
-            + bool Busy = false;
-            # Vector3 IdleCenter;
+            + AnimalState State
             # AnimalState CurrentState
+            + void OnMouseDown()
         }
 
         abstract class FriendlyAnimal{
             + AnimalPen Pen
-            + void OnMouseDown()
         }
 
         abstract class HostileAnimal{
-
         }
 
         interface IFriendlyAnimal{
-            + void OnMouseDown()
+            
         }
 
         interface IHostileAnimal{
-
+            
+        
         }
 
         class Chicken{
@@ -64,7 +61,7 @@ namespace Lesson_6{
 
         class Pig{
             # void Update()
-        
+
         }
 
         class Wolf{
