@@ -3,7 +3,12 @@ guid: 44574082c9418b449aedcbeacb3c38ce
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - AnimalPen: {fileID: 7109028269910634932, guid: 3c039efbb3299c445ad0095762cf7172, type: 3}
+  - AnimalPen1: {fileID: 7109028269910634932, guid: 7ea46381cbb8c79408a5df216db8ed26, type: 3}
+  - AnimalPen2: {fileID: 7109028269910634932, guid: 24a38cf322094e648969ed1989f4f4d0, type: 3}
+  - AnimalPen3: {fileID: 7109028269910634932, guid: a569d4c538733b8489003d41def631ff, type: 3}
+  - AnimalPen4: {fileID: 7109028269910634932, guid: 37599c94fbd17524cb71fff050f28f40, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
