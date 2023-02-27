@@ -66,6 +66,7 @@ namespace Lesson_6{
 
         class Wolf{
             # void Update() 
+            + void Attack()
         }
 
         FriendlyAnimal -up-|> Animal
