@@ -57,18 +57,18 @@ namespace Lesson_6{
 
         }
 
-        class Cat{
+        class Chicken{
             # void Update()
-            + void OnMouseDown()
+            
         }
 
         class Pig{
             # void Update()
-            - IEnumerator LerpMovement(Vector3 to)
+        
         }
 
         class Wolf{
-
+            # void Update() 
         }
 
         FriendlyAnimal -up-|> Animal
@@ -76,7 +76,7 @@ namespace Lesson_6{
         HostileAnimal -up-|> Animal
         HostileAnimal -up-|> IHostileAnimal
         Wolf -up-|> HostileAnimal
-        Cat -up-|> FriendlyAnimal
+        Chicken -up-|> FriendlyAnimal
         Pig -up-|> FriendlyAnimal
         Animal *-- AnimalState : State
     }
