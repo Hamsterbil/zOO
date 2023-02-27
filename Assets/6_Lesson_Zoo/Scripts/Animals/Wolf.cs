@@ -30,8 +30,6 @@ namespace Lesson_6.Animals
             transform.position = orbitPosition;
 
             _angle += speed * Time.deltaTime;
-            
-            
         }
 
     }
