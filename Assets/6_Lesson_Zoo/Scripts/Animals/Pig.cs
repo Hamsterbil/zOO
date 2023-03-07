@@ -10,11 +10,12 @@ namespace Lesson_6.Animals
         {
             if (CurrentState == AnimalState.IDLE && !Busy)
             {
-               transform.Translate(Vector3.forward * Time.deltaTime * speed);
+                transform.position = Vector3.MoveTowards(transform.position, 
+                target.position, speed * Time.deltaTime);           
             }
 
 
-            //IF input wasd
+            
     
 
         }
