@@ -12,7 +12,7 @@ namespace Lesson_6.Animals
         {
             float x = Input.GetAxis("Foward");
             float z = Input.GetAxis("Up");
-            float y = Input.GetAxis("Backward");
+            float y = Input.GetAxis("Back");
             transform.position += transform.forward * speed * Time.deltaTime;
             Vector3 movement = new Vector3(x, y, z);
             transform.Translate(movement * speed * Time.deltaTime);

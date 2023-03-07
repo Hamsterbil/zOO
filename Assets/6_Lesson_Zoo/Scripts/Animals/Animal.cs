@@ -6,7 +6,7 @@ namespace Lesson_6.Animals
 {
     public abstract class Animal : MonoBehaviour
     {
-        public float speed = 0f;
+        public float speed = 2f;
         public float IdleArea = 25.0f;
         public bool Busy = false;
         protected Vector3 IdleCenter;
