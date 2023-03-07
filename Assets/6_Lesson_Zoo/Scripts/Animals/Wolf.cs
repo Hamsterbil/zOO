@@ -20,7 +20,7 @@ namespace Lesson_6.Animals
         }
         protected void Update()
         {
-            if (CurrentState == AnimalState.IDLE && !busy)
+            if (CurrentState == AnimalState.IDLE && !Busy)
             {
              
             }
@@ -34,7 +34,7 @@ namespace Lesson_6.Animals
 
             _angle += speed * Time.deltaTime;
 
-            if (CurrentState == AnimalState.HUNTING && !busy)
+            if (CurrentState == AnimalState.HUNTING && !Busy)
             {
                 Busy = true;
                 transform.LookAt(Player.transform.position);
@@ -42,7 +42,7 @@ namespace Lesson_6.Animals
 
             }
 
-            if (CurrentState == AnimalState.FLEEING && !busy)
+            if (CurrentState == AnimalState.FLEEING && !Busy)
             {
                 Busy = true;
                 Vector3 nextGraze = Pen.transform.position;

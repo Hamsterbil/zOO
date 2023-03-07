@@ -23,7 +23,7 @@ namespace Lesson_6.Animals
         private IEnumerator LerpMovement(Vector3 to)
         {
             float lerpTimer = 0;
-            float lerpDuration = 1.5f;
+            float lerpDuration = 15f;
 
             while (lerpTimer < lerpDuration)
             {
