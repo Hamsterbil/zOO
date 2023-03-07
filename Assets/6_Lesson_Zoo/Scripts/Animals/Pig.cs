@@ -6,18 +6,17 @@ namespace Lesson_6.Animals
 {
     public class Pig : FriendlyAnimal
     {
-    protected void Update()
-    {
-        if (CurrentState == AnimalState.IDLE && !Busy)
+        protected void Update()
         {
-            float x = Input.GetAxis("Foward");
-            float z = Input.GetAxis("Up");
-            float y = Input.GetAxis("Back");
-            transform.position += transform.forward * speed * Time.deltaTime;
-            Vector3 movement = new Vector3(x, y, z);
-            transform.Translate(movement * speed * Time.deltaTime);
-        }
-      
+            if (CurrentState == AnimalState.IDLE && !Busy)
+            {
+               transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            }
+
+
+            //IF input wasd
+    
+
         }
 
     }
