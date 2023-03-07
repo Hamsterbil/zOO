@@ -8,34 +8,11 @@ namespace Lesson_6.Animals
     {
         protected void Update()
         {
-            if (CurrentState == AnimalState.IDLE && !Busy)
-            {
-                Busy = true;
-                Vector3 nextGraze = Pen.transform.position;
-                Vector2 rand = Random.insideUnitCircle * 25f;
-                nextGraze.x += rand.x;
-                nextGraze.y = 2f;
-                nextGraze.z += rand.y;
-                StartCoroutine(LerpMovement(nextGraze));
-            }
-        }
-
-        private IEnumerator LerpMovement(Vector3 to)
-        {
-            float lerpTimer = 0;
-            float lerpDuration = 15f;
-
-            while (lerpTimer < lerpDuration)
-            {
-                transform.position = Vector3.Lerp(transform.position, to, lerpTimer / lerpDuration);
-                lerpTimer += Time.deltaTime;
-
-                Vector3 targetDir = to - transform.position;
-                if (targetDir != Vector3.zero) transform.rotation = Quaternion.LookRotation(targetDir);
-
-                yield return null;
-            }
-            Busy = false;
+            float h = Input.GetAxisRaw(18);
+            float v = Input.GetAxisRaw(12);
+   
+            gameObject.transform.position = new Vector2 (transform.position.x + (h * speed), 
+            transform.position.y + (v * speed));
         }
 
     }
