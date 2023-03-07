@@ -99,6 +99,13 @@ public class Zoo : MonoBehaviour
                 set.Add(AnimalPrefabs[0]);
                 pen.SpawnAnimals(set);
                 break;
+            
+            case 5:
+                HashSet<GameObject> sets = new HashSet<GameObject>();
+                for(int x = 0; x < 10; x++)
+                {
+                    sets.Add(AnimalPrefabs[0]);
+                }
 
             default:
                 break;
