@@ -10,10 +10,11 @@ namespace Lesson_6.Animals
     {
         if (CurrentState == AnimalState.IDLE && !Busy)
         {
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
+            float x = Input.GetAxis("Foward");
+            float z = Input.GetAxis("Up");
+            float y = Input.GetAxis("Backward");
             transform.position += transform.forward * speed * Time.deltaTime;
-            Vector3 movement = new Vector3(x, 0, z);
+            Vector3 movement = new Vector3(x, y, z);
             transform.Translate(movement * speed * Time.deltaTime);
         }
       
