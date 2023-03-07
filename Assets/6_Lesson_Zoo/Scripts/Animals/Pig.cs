@@ -8,11 +8,15 @@ namespace Lesson_6.Animals
     {
         protected void Update()
         {
-            float h = Input.GetAxisRaw(18);
-            float v = Input.GetAxisRaw(12);
-   
-            gameObject.transform.position = new Vector2 (transform.position.x + (h * speed), 
-            transform.position.y + (v * speed));
+    if (CurrentState == AnimalState.IDLE && !Busy)
+    {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(x, 0, z);
+        transform.Translate(movement * speed * Time.deltaTime);
+    }
+      
         }
 
     }
