@@ -6,6 +6,7 @@ namespace Lesson_6.Animals
 {
     public class Pig : FriendlyAnimal
     {
+        public Transform target;
         protected void Update()
         {
             if (CurrentState == AnimalState.IDLE && !Busy)
