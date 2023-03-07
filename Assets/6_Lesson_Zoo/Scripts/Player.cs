@@ -5,41 +5,82 @@ using UnityEngine;
 
 namespace Lesson_6
 {
+    
+    [RequireComponent(typeof(CharacterController))]
+    
     public class Player : MonoBehaviour
     {
-        public FriendlyAnimal SelectedAnimal = null;
+            public Camera playerCamera;
+            public float walkSpeed = 6f;
+            public float runSpeed = 12f;
+            public float jumpPower = 7f;
+            public float gravity = 10f;
 
-        //Check if the mouse is over an animal and if so, select it and move it
-        protected void Update()
-        {
-            if (Input.GetMouseButton(0))
+
+            public float lookSpeed = 2f;
+            public float lookXLimit = 45f;
+
+
+            Vector3 moveDirection = Vector3.zero;
+            float rotationX = 0;
+
+            public bool canMove = true;
+
+
+            CharacterController characterController;
+            void Start()
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                characterController = GetComponent<CharacterController>();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+
+            void Update()
+            {
+
+                #region Handles Movment
+                Vector3 forward = transform.TransformDirection(Vector3.forward);
+                Vector3 right = transform.TransformDirection(Vector3.right);
+
+                // Press Left Shift to run
+                bool isRunning = Input.GetKey(KeyCode.LeftShift);
+                float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
+                float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
+                float movementDirectionY = moveDirection.y;
+                moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+
+                #endregion
+
+                #region Handles Jumping
+                if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
                 {
-                    if (hit.collider != null)
-                    {
-                        if (hit.transform.GetComponent<FriendlyAnimal>() != null)
-                        {
-                            SelectedAnimal = hit.transform.GetComponent<FriendlyAnimal>();
-                        }
-                    }
+                    moveDirection.y = jumpPower;
                 }
-            }
-            else
-            {
-                SelectedAnimal = null;
-            }
+                else
+                {
+                    moveDirection.y = movementDirectionY;
+                }
 
-            if (SelectedAnimal != null)
-            {
-                Vector3 input = Input.mousePosition;
-                input.z = Camera.main.transform.position.y;
-                Vector3 worldPoint = Camera.main.ScreenToWorldPoint(input);
-                Vector3 dragLocation = new Vector3(worldPoint.x, SelectedAnimal.transform.position.y, worldPoint.z);
-                SelectedAnimal.transform.position = dragLocation;
+                if (!characterController.isGrounded)
+                {
+                    moveDirection.y -= gravity * Time.deltaTime;
+                }
+
+                #endregion
+
+                #region Handles Rotation
+                characterController.Move(moveDirection * Time.deltaTime);
+
+                if (canMove)
+                {
+                    rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+                    rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+                    playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+                    transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+                }
+
+                #endregion
             }
         }
+
     }
-}
