@@ -30,28 +30,6 @@ namespace Lesson_6.Animals
                 _startPosition.z + (IdleArea * Mathf.Sin(_angle))
             );
 
-            transform.position = orbitPosition;
-
-            _angle += speed * Time.deltaTime;
-
-            if (CurrentState == AnimalState.HUNTING && !Busy)
-            {
-                Busy = true;
-                transform.LookAt(Player.transform.position);
-                transform.position += transform.forward * speed * Time.deltaTime;
-
-            }
-
-            if (CurrentState == AnimalState.FLEEING && !Busy)
-            {
-                Busy = true;
-                Vector3 nextGraze = Pen.transform.position;
-                Vector2 rand = Random.insideUnitCircle * 25f;
-                nextGraze.x += rand.x;
-                nextGraze.y = 2f;
-                nextGraze.z += rand.y;
-                StartCoroutine(LerpMovement(nextGraze));
-            }
 
         }
 
