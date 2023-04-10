@@ -6,20 +6,20 @@ namespace Lesson_6.Animals
 {
     public class Pig : FriendlyAnimal
     {
-        public Transform target;
+        protected float _rndStart;
+
+        void Start()
+        {
+            _rndStart = Random.Range(0f, 5f);
+        }
+
         protected void Update()
         {
-            if (CurrentState == AnimalState.IDLE && !Busy)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, 
-                target.position, speed * Time.deltaTime);           
-            }
-
-
-            
-    
-
+            //Move up and down the z axis with a sin wave between initial amd IdleArea values times speed
+            _rndStart += Time.deltaTime;
+            transform.position = new Vector3(IdleCenter.x, IdleCenter.y, IdleCenter.z + (IdleArea * Mathf.Sin(_rndStart * speed)));
         }
+
 
     }
 }

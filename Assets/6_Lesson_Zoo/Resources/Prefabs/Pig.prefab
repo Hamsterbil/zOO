@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4196906076905282569}
   - component: {fileID: 3623698020602160858}
   - component: {fileID: 7093379330980260948}
+  - component: {fileID: 910613878732977429}
   m_Layer: 0
   m_Name: Pig
   m_TagString: Untagged
@@ -114,3 +115,19 @@ MonoBehaviour:
   IdleArea: 25
   Busy: 0
   Pen: {fileID: 0}
+--- !u!54 &910613878732977429
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6517551964478740236}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
