@@ -37,7 +37,6 @@ namespace Lesson_6
 
             void Update()
             {
-
                 #region Handles Movment
                 Vector3 forward = transform.TransformDirection(Vector3.forward);
                 Vector3 right = transform.TransformDirection(Vector3.right);
