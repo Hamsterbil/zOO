@@ -6,29 +6,26 @@ using UnityEngine;
 
 public class Zoo : MonoBehaviour
 {
+    public float AmountOfSquareSides;
+    private float PenAmount; 
+    private int zAxis = 0;
+    private int xAxis = 0;
+
     public List<GameObject> AnimalPrefabs;
     public List<GameObject> PrefabList;
 
     public List<AnimalPen> Pens;
     public List<Animal> AllAnimals;
 
-    public GameObject AnimalPen;
-    public GameObject AnimalPen1;
-    public GameObject AnimalPen2;
-    public GameObject AnimalPen3;
-    public GameObject AnimalPen4;
-
     protected void Start()
     {
+    //Take the amount of sides^2, to get the pen amount, since it's a square
+        PenAmount = Mathf.Pow(AmountOfSquareSides, 2); 
+
         Pens = new List<AnimalPen>();
         AllAnimals = new List<Animal>();
-        PrefabList.Add(AnimalPen);
-        PrefabList.Add(AnimalPen1);
-        PrefabList.Add(AnimalPen2);
-        PrefabList.Add(AnimalPen3);
-        PrefabList.Add(AnimalPen4);
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < PenAmount; i++)
         {
             AnimalPen pen = Spawner(i);
             AllAnimals.AddRange(pen.Animals);
@@ -41,9 +38,20 @@ public class Zoo : MonoBehaviour
         //Spawn animal pen
         int prefabIndex = UnityEngine.Random.Range(0,4);
         GameObject go = Instantiate(PrefabList[prefabIndex], transform);
+        
         //Set the position of the pen to be 50 units away from the previous pen in both x and z
-        Vector3 spawnLocation = new Vector3((counter + 1) * 50, 0, (counter + 1) * 50);
-        go.transform.SetPositionAndRotation(spawnLocation, Quaternion.identity);
+        if (counter % AmountOfSquareSides == 0)
+        {
+            xAxis = 0;
+            zAxis++;            
+        }
+        else
+        {
+            xAxis++;
+        }
+
+        Vector3 spawnLocation = new Vector3(xAxis * 50, 0, zAxis * 50);
+        go.transform.SetPositionAndRotation(spawnLocation, Quaternion.Euler(0, Random.Range(0, 4) * 90, 0));
         AnimalPen pen = go.GetComponent<AnimalPen>();
 
         //Spawn animals in the pen using different methods
@@ -100,8 +108,6 @@ public class Zoo : MonoBehaviour
                 pen.SpawnAnimals(set);
                 break;
             
-
-
             default:
                 break;
         }
